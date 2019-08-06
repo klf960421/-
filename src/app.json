@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/home/home",
-    "pages/addInterview/addInterview",
-    "pages/interviewList/interviewList",
-    "pages/interviewDetail/interviewDetail",
-    "pages/personalCenter/personalCenter"
+    "pages/home/main",
+    "pages/addInterview/main",
+    "pages/interviewList/main",
+    "pages/interviewDetail/main",
+    "pages/personalCenter/main"
 
   ],
   "window": {
