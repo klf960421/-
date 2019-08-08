@@ -1,10 +1,11 @@
-import {addSign} from '@/service';
+import { addSign, getSignList } from '@/service';
 //数据
 const state = {
     ads: '',
     adsList: {
        
-    }
+    },
+    signList: []
 }
   
   //同步操作
@@ -12,13 +13,17 @@ const mutations = {
     //更新地址信息
     address(state, payload){
         state.ads = payload
+    },
+    //面试列表
+    updateSign(state, payload){
+        state.signList = payload
     }
 }
 
 //异步操作
 const actions = {
     //添加地址
-    async add({commit}, payload){
+    async add({ commit }, payload){
         let data=await addSign(payload)
         if(data.code === 0){
             wx.showModal({
@@ -33,6 +38,12 @@ const actions = {
                 }
             })
         } 
+    },
+    //获取面试地址信息
+    async getInfo({ commit }, payload){
+        let data=await getSignList(payload)
+        console.log(data)
+        commit('updateSign',payload)
     }
 }
   
