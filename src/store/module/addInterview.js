@@ -1,4 +1,12 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: klf
+ * @Date: 2019-08-08 21:45:07
+ * @LastEditTime: 2019-08-09 00:52:49
+ * @LastEditors: Please set LastEditors
+ */
 import { addSign, getSignList } from '@/service';
+import moment from 'moment'
 //数据
 const state = {
     ads: '',
@@ -16,7 +24,17 @@ const mutations = {
     },
     //面试列表
     updateSign(state, payload){
-        state.signList = payload
+        //处理数据格式
+        let data=payload.map(item=>{
+            item.address=JSON.parse(item.address)
+            item.start_time = formatTime(item.start_time);
+            return item
+        })
+        state.signList = data
+    },
+    updateInfo(state, payload){
+        console.log(payload)
+
     }
 }
 
@@ -41,10 +59,15 @@ const actions = {
     },
     //获取面试地址信息
     async getInfo({ commit }, payload){
+        console.log(payload)
         let data=await getSignList(payload)
-        console.log(data)
-        commit('updateSign',payload)
+        commit('updateSign', data.data)
     }
+}
+
+// 处理时间
+function formatTime(start_time){
+    return moment(start_time*1).format('YYYY-MM-DD HH:mm');
 }
   
 export default {

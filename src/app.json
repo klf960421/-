@@ -5,7 +5,6 @@
     "pages/personalCenter/main",
     "pages/interviewDetail/main",
     "pages/addInterview/main",
-    "pages/interviewList/main",
     "pages/callCenter/main",
     "pages/search/main"
   ],
