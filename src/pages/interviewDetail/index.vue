@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="interviewDetail">
     <ul class="interviewDetailList">
       <li>
@@ -31,6 +32,9 @@
       <p>放弃面试</p>
     </div>
   </div>
+=======
+  <div>interviewDetail</div>
+>>>>>>> 3af3098e1f2de4f3aafa0af700ec1a62216863af
 </template>
 <script>
 export default {
@@ -40,6 +44,7 @@ export default {
     return {};
   },
   computed: {},
+<<<<<<< HEAD
   methods: {},
   created() {},
   mounted() {}
@@ -100,4 +105,14 @@ export default {
   }
 }
 // 1px = 2rpx
+=======
+  methods: {
+    
+  },
+  created() {},
+  mounted() {}
+};
+</script>
+<style scoped lang="">
+>>>>>>> 3af3098e1f2de4f3aafa0af700ec1a62216863af
 </style>
