@@ -7,27 +7,22 @@
         </nav>
         <div class="content">
             <ul class="list">
-                <li>
-                    <p class="adsWrap">
-                        <span class="title">北京八维研修学院</span>
-                        <span class="startBtn">未开始</span>
-                    </p>
-                    <p class="center">北京八维研修学院</p>
-                    <p class="timeWrap">
-                        <span class="time">面试时间:2019-9-5</span>
-                        <span class="warnBtn">未提醒</span>
-                    </p>
-                </li>
+                <interviewItem></interviewItem>
+                <interviewItem></interviewItem>
+                <interviewItem></interviewItem>
             </ul>
         </div>
     </div>
 </template>
 <script>
+import { mapState, mapMutations, mapActions } from "vuex"
+import interviewItem from '../../components/interviewItem'
 export default {
     props:{
 
     },
     components:{
+        interviewItem
 
     },
     data(){
@@ -36,13 +31,19 @@ export default {
         }
     },
     computed:{
+        ...mapState({
+            signList:state=>state.addInterview.signList
+        })
 
     },
     methods:{
-
+        ...mapActions({
+           getInfo: 'addInterview/getInfo'
+        })
     },
     created(){
-
+        //初始化获取面试列表信息
+        this.getInfo()
     },
     mounted(){
 
@@ -101,7 +102,7 @@ export default {
         line-height:1.2;
         overflow:hidden;
         text-overflow:ellipsis;
-        display:-webkit-box;
+
         -webkit-line-clamp:3;
         -webkit-box-orient:vertical;
         margin:15rpx 0;

@@ -64,8 +64,6 @@ export default {
     if (moment().hour() === 23){
       this.info.date = [1,0,0];
     }
-
-    console.log(this.info,"data1111")
   },
 
   computed:{
