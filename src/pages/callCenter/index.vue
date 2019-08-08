@@ -1,6 +1,6 @@
 <template>
     <div>
-addinterview
+       客服中心
     </div>
 </template>
 <script>
@@ -30,6 +30,6 @@ export default {
     }
 }
 </script>
-<style scoped lang="">
+<style scoped lang="scss">
 
 </style>

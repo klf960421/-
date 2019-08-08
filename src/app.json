@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/personalCenter/main",
+    "pages/interviewDetail/main",
     "pages/home/main",
     "pages/addInterview/main",
     "pages/interviewList/main",
-    "pages/interviewDetail/main",
-    "pages/personalCenter/main"
-
+    "pages/callCenter/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

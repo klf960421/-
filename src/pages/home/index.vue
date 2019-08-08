@@ -1,6 +1,7 @@
 <template>
     <div>
-interviewDetail
+      一面而就
+      添加面试
     </div>
 </template>
 <script>
@@ -30,6 +31,6 @@ export default {
     }
 }
 </script>
-<style scoped lang="">
+<style scoped lang="scss">
 
 </style>
