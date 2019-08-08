@@ -4,9 +4,15 @@
     "pages/personalCenter/main",
     "pages/interviewDetail/main",
     "pages/addInterview/main",
+<<<<<<< HEAD
     "pages/callCenter/main",
     "pages/search/main",
     "pages/interviewList/main"
+=======
+    "pages/interviewList/main",
+    "pages/callCenter/main",
+    "pages/search/main"
+>>>>>>> f9ffc707c2af52e490cd55414a87a413e0ab7b60
   ],
   "window": {
     "backgroundTextStyle": "light",
