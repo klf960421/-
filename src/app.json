@@ -1,19 +1,12 @@
 {
   "pages": [
-    "pages/personalCenter/main",
-    "pages/interviewDetail/main",
     "pages/home/main",
-    "pages/addInterview/main",
-<<<<<<< HEAD
-    "pages/interviewList/main",
-    "pages/callCenter/main"
-=======
-    "pages/search/main",
-    "pages/interviewDetail/main",
     "pages/personalCenter/main",
-    "pages/interviewList/main"
-   
->>>>>>> 3af3098e1f2de4f3aafa0af700ec1a62216863af
+    "pages/interviewDetail/main",
+    "pages/addInterview/main",
+    "pages/interviewList/main",
+    "pages/callCenter/main",
+    "pages/search/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
