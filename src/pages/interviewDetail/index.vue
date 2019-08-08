@@ -1,10 +1,9 @@
 <template>
-<<<<<<< HEAD
   <div class="interviewDetail">
     <ul class="interviewDetailList">
       <li>
         <span>面试地址 :</span>
-        <span>北京八维 </span>
+        <span>北京八维</span>
       </li>
       <li>
         <span>面试时间 :</span>
@@ -32,9 +31,6 @@
       <p>放弃面试</p>
     </div>
   </div>
-=======
-  <div>interviewDetail</div>
->>>>>>> 3af3098e1f2de4f3aafa0af700ec1a62216863af
 </template>
 <script>
 export default {
@@ -44,7 +40,6 @@ export default {
     return {};
   },
   computed: {},
-<<<<<<< HEAD
   methods: {},
   created() {},
   mounted() {}
@@ -68,18 +63,18 @@ export default {
       line-height: 90rpx;
       display: flex;
       border-bottom: 0.5rpx solid #ccc;
-      span{
-       color:#333;
+      span {
+        color: #333;
       }
-      :nth-child(1){
-          color:rgba(204, 204, 204, 0.979);
-        }
-       :nth-child(2){
-          text-indent: 40rpx;
-        }
+      :nth-child(1) {
+        color: rgba(204, 204, 204, 0.979);
+      }
+      :nth-child(2) {
+        text-indent: 40rpx;
+      }
     }
-    :last-child{
-      border-bottom:0;
+    :last-child {
+      border-bottom: 0;
     }
   }
   .btn {
@@ -88,31 +83,21 @@ export default {
     line-height: 90rpx;
     display: flex;
     align-items: center;
-    margin-top:40rpx;
+    margin-top: 40rpx;
     p {
       flex: 1;
       text-align: center;
       // border:0.5rpx solid #ccc;
-      color:#fff;
-      margin:10rpx 20rpx;
+      color: #fff;
+      margin: 10rpx 20rpx;
     }
-    :nth-child(1){
+    :nth-child(1) {
       background: rgb(10, 161, 221);
     }
-     :nth-child(2){
+    :nth-child(2) {
       background: rgba(255, 51, 0, 0.753);
     }
   }
 }
 // 1px = 2rpx
-=======
-  methods: {
-    
-  },
-  created() {},
-  mounted() {}
-};
-</script>
-<style scoped lang="">
->>>>>>> 3af3098e1f2de4f3aafa0af700ec1a62216863af
 </style>
