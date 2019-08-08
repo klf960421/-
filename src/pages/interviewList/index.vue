@@ -1,129 +1,103 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: klf
+ * @Date: 2019-08-08 21:21:26
+ * @LastEditTime: 2019-08-09 07:11:38
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
     <div class="listWrap">
+        <!-- 导航-->
         <nav class="nav">
-            <span v-for='(item,index) in navList' 
+            <span v-for='(item, index) in navList' 
                 :key="index" 
-                >{{item}}</span>
+                @click="changeData(index, item)"
+                :class='index===ind?"active" : " "'
+                >{{item.name}}</span>
         </nav>
+        <!-- 内容-->
         <div class="content">
             <ul class="list">
-                <interviewItem></interviewItem>
-                <interviewItem></interviewItem>
-                <interviewItem></interviewItem>
+                <interviewItem v-for="(item,index) in signList" :key="index" :item="item"></interviewItem>
             </ul>
         </div>
     </div>
 </template>
+
 <script>
+
 import { mapState, mapMutations, mapActions } from "vuex"
 import interviewItem from '../../components/interviewItem'
-export default {
-    props:{
 
-    },
+export default {
     components:{
         interviewItem
 
     },
     data(){
         return {
-            navList:['未开始', '已打卡', '已放弃', '全部']
+            navList:[{ id:0, name:'未开始' }, { id:1, name:'已打卡' }, { id:2, name:'已放弃' }, { id:3, name:'全部' }], //导航
+            ind: 0 //导航样式
         }
     },
     computed:{
         ...mapState({
-            signList:state=>state.addInterview.signList
+            signList: state=>state.addInterview.signList //面试信息
         })
 
     },
     methods:{
         ...mapActions({
            getInfo: 'addInterview/getInfo'
-        })
+           
+        }),
+        ...mapMutations({
+           updateInfo: 'addInterview/updateInfo'
+        }),
+        //切换导航
+        changeData(ind, item){
+            this.ind = ind;
+            if (item.id === 3){
+                this.getInfo()
+            }else{
+                this.getInfo({status: item.id-1}) 
+            }
+        }
     },
     created(){
         //初始化获取面试列表信息
         this.getInfo()
-    },
-    mounted(){
-
     }
 }
 </script>
-<style scoped lang="">
-    .listWrap{
-        width:100%;
-        height:100%;
-        display: flex;
-        flex-direction: column; 
-        overflow: hidden;
+<style scoped lang="scss">
+.listWrap{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column; 
+    overflow: scroll;
+}
+.nav{
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    border-top:3rpx solid #eee;
+    position: fixed;
+    top:0;
+    left: 0;
+    background: #fff;
+    border-bottom:1rpx solid #eee;
+    .active{
+        border-bottom: 1px solid rgb(7, 84, 114);
     }
-    .nav{
-        display: flex;
-        justify-content: space-around;
-        width:100%;
-        height: 88rpx;
-        line-height: 88rpx;
-        border-top:3rpx solid #eee;
-        position: fixed;
-        top:0;
-        left: 0;
-        background: #fff;
-        border-bottom:1rpx solid #eee;
-    }
-    .content{
-        flex:1;    
-        padding-top:88rpx;
-    }
-    .list{
-        border-top:2rpx solid #eee;
-    }
-    .list li{
-        border-top:20rpx solid #eee;
-        width:100%;
-        padding:10rpx 30rpx;
-        box-sizing:border-box;
-    }
-    .top{
-        display:flex;
-        line-height:1.5;
-        margin:15rpx 0;
-        align-items:center;
-        justify-content:space-between;
-    }
-    .top .title{
-        color:#000;
-        font-size:44rpx;
-        font-weight:500;      
-    }
-    .center{
-        font-size:32rpx;
-        color:#999;
-        line-height:1.2;
-        overflow:hidden;
-        text-overflow:ellipsis;
-
-        -webkit-line-clamp:3;
-        -webkit-box-orient:vertical;
-        margin:15rpx 0;
-        align-items:center;
-        justify-content:space-between;
-    }
-    .timeWrap{
-        display:flex;
-        line-height:1.5;
-        margin:15rpx 0;
-        align-items:center;
-        justify-content:space-between;
-        font-size:34rpx;
-        color:#666;
-    }
-   
-    .warnBtn{
-        width:100%;
-        text-align: center;
-        margin-top: 150rpx;
-        font-size: 34rpx;
-    }
+}
+.content{
+    flex:1;    
+    padding-top:88rpx;
+    background: #eee;
+}
 
 </style>

@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: klf
+ * @Date: 2019-08-08 22:06:22
+ * @LastEditTime: 2019-08-09 07:16:04
+ * @LastEditors: Please set LastEditors
+ */
 import { addSign, getSignList } from '@/service';
 //数据
 const state = {

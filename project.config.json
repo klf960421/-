@@ -9,8 +9,8 @@
 	},
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
-	"appid": "wx3375420e2c184d34",
-	"projectname": "sign",
+	"appid": "wx91c2352671b85fec",
+	"projectname": "The-interview-assistant",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
