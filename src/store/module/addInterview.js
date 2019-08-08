@@ -16,6 +16,8 @@ const mutations = {
     },
     //面试列表
     updateSign(state, payload){
+        //处理面试数据
+        console.log(payload,"11111")
         state.signList = payload
     }
 }
@@ -43,7 +45,7 @@ const actions = {
     async getInfo({ commit }, payload){
         let data=await getSignList(payload)
         console.log(data)
-        commit('updateSign',payload)
+        commit('updateSign', data.data)
     }
 }
   
