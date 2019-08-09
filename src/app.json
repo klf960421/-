@@ -2,7 +2,6 @@
   "pages": [
     "pages/home/main",
     "pages/interviewList/main",
-    
     "pages/personalCenter/main",
     "pages/interviewDetail/main",
     "pages/addInterview/main",

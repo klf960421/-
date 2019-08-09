@@ -1,3 +1,10 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-08 22:05:46
+ * @LastEditTime: 2019-08-09 07:53:16
+ * @LastEditors: Please set LastEditors
+ */
 import Fly from "flyio/dist/npm/wx"
 
 export let fly = new Fly
