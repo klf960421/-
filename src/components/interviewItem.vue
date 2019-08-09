@@ -2,12 +2,12 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:21:26
- * @LastEditTime: 2019-08-09 00:40:08
+ * @LastEditTime: 2019-08-09 08:36:56
  * @LastEditors: Please set LastEditors
  -->
 <template>
     <li>
-        <div class="company">
+        <div class="company" @click="goToDetail(item.id)">
             <h5>{{item.company}}</h5>
             <span class="start">未开始</span>
         </div>
@@ -36,12 +36,9 @@ export default {
 
     },
     methods:{
-
-    },
-    created(){
-
-    },
-    mounted(){
+        goToDetail(id){
+             wx.navigateTo({url: `/pages/interviewDetail/main/${id}`})
+        }
 
     }
 }
