@@ -23,7 +23,6 @@ export default {
     },
     components:{
         interviewItem
-
     },
     data(){
         return {
@@ -50,7 +49,7 @@ export default {
     }
 }
 </script>
-<style scoped lang="">
+<style scoped lang="scss">
     .listWrap{
         width:100%;
         height:100%;
