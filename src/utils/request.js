@@ -1,8 +1,13 @@
 /*
  * @Description: In User Settings Edit
  * @Author: your name
+<<<<<<< HEAD
  * @Date: 2019-08-08 22:05:46
  * @LastEditTime: 2019-08-09 07:53:16
+=======
+ * @Date: 2019-08-08 21:21:26
+ * @LastEditTime: 2019-08-09 07:52:26
+>>>>>>> 9e150a909ea565537a26624ec059193b1424f1f2
  * @LastEditors: Please set LastEditors
  */
 import Fly from "flyio/dist/npm/wx"

@@ -2,7 +2,11 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 22:05:46
+<<<<<<< HEAD
  * @LastEditTime: 2019-08-09 07:53:19
+=======
+ * @LastEditTime: 2019-08-09 07:42:32
+>>>>>>> 9e150a909ea565537a26624ec059193b1424f1f2
  * @LastEditors: Please set LastEditors
  -->
 ## About

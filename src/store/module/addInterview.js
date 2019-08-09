@@ -1,11 +1,12 @@
 /*
  * @Description: In User Settings Edit
  * @Author: klf
- * @Date: 2019-08-08 22:06:22
- * @LastEditTime: 2019-08-09 07:16:04
+ * @Date: 2019-08-08 21:45:07
+ * @LastEditTime: 2019-08-09 10:03:02
  * @LastEditors: Please set LastEditors
  */
 import { addSign, getSignList } from '@/service';
+import moment from 'moment'
 //数据
 const state = {
     ads: '',
@@ -23,7 +24,17 @@ const mutations = {
     },
     //面试列表
     updateSign(state, payload){
-        state.signList = payload
+        //处理数据格式
+        let data=payload.map(item=>{
+            item.address=JSON.parse(item.address)
+            item.start_time = formatTime(item.start_time);
+            return item
+        })
+        state.signList = data
+    },
+    updateInfo(state, payload){
+        console.log(payload)
+
     }
 }
 
@@ -40,7 +51,7 @@ const actions = {
                 confirmColor: '#197DBF',
                 success (res) {
                     if (res.confirm) {
-                    wx.navigateTo({url: '/pages/interviewDetail/main'})
+                    wx.navigateTo({url: '/pages/interviewList/main'})
                     }
                 }
             })
@@ -48,10 +59,15 @@ const actions = {
     },
     //获取面试地址信息
     async getInfo({ commit }, payload){
+        console.log(payload)
         let data=await getSignList(payload)
-        console.log(data)
-        commit('updateSign',payload)
+        commit('updateSign', data.data)
     }
+}
+
+// 处理时间
+function formatTime(start_time){
+    return moment(start_time*1).format('YYYY-MM-DD HH:mm');
 }
   
 export default {
