@@ -3,9 +3,10 @@
     "pages/home/main",
     "pages/interviewList/main",
     "pages/addInterview/main",
-    "pages/search/main",
+    "pages/personalCenter/main",
     "pages/interviewDetail/main",
-    "pages/personalCenter/main"
+    "pages/callCenter/main",
+    "pages/search/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
