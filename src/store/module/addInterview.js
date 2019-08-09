@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:45:07
- * @LastEditTime: 2019-08-09 00:52:49
+ * @LastEditTime: 2019-08-09 08:01:24
  * @LastEditors: Please set LastEditors
  */
 import { addSign, getSignList } from '@/service';
@@ -51,7 +51,7 @@ const actions = {
                 confirmColor: '#197DBF',
                 success (res) {
                     if (res.confirm) {
-                    wx.navigateTo({url: '/pages/interviewDetail/main'})
+                    wx.navigateTo({url: '/pages/interviewList/main'})
                     }
                 }
             })

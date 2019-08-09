@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:21:26
- * @LastEditTime: 2019-08-09 00:51:27
+ * @LastEditTime: 2019-08-09 07:02:54
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -71,33 +71,33 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-    .listWrap{
-        width:100%;
-        height:100%;
-        display: flex;
-        flex-direction: column; 
-        overflow: scroll;
+.listWrap{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column; 
+    overflow: scroll;
+}
+.nav{
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    border-top:3rpx solid #eee;
+    position: fixed;
+    top:0;
+    left: 0;
+    background: #fff;
+    border-bottom:1rpx solid #eee;
+    .active{
+        border-bottom: 1px solid rgb(7, 84, 114);
     }
-    .nav{
-        display: flex;
-        justify-content: space-around;
-        width:100%;
-        height: 88rpx;
-        line-height: 88rpx;
-        border-top:3rpx solid #eee;
-        position: fixed;
-        top:0;
-        left: 0;
-        background: #fff;
-        border-bottom:1rpx solid #eee;
-        .active{
-            border-bottom: 1px solid rgb(7, 84, 114);
-        }
-    }
-    .content{
-        flex:1;    
-        padding-top:88rpx;
-        background: #eee;
-    }
+}
+.content{
+    flex:1;    
+    padding-top:88rpx;
+    background: #eee;
+}
 
 </style>
