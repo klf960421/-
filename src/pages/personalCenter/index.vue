@@ -1,3 +1,10 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-08 21:30:57
+ * @LastEditTime: 2019-08-09 10:25:28
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="personalCenter">
     <div class="top">
@@ -18,9 +25,13 @@
         <i class="iconfont icon-jiantou-copy-copy"></i>
       </li>
     </ul>
+    <button open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="telBtn">获取用户电话</button>
   </div>
 </template>
 <script>
+import {mapState, mapMutations} from 'vuex'
+
+
 export default {
   props: {},
   components: {},
@@ -29,8 +40,8 @@ export default {
   },
   computed: {},
   methods: {
+   
     myviews() {
-      // console.log(9);
       wx.navigateTo({
         url: "/pages/interviewList/main"
       });
@@ -39,6 +50,9 @@ export default {
        wx.navigateTo({
         url: "/pages/callCenter/main"
       });
+    },
+    getPhoneNumber(e){
+      console.log(e)
     }
   },
   created() {},
@@ -88,6 +102,12 @@ export default {
         margin-left: 30rpx;
       }
     }
+  }
+  .telBtn{
+    position: fixed;
+    top:10rpx;
+    width:100%;
+    background: #fff;
   }
 }
 </style>

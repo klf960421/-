@@ -2,7 +2,11 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 22:05:46
+<<<<<<< HEAD
  * @LastEditTime: 2019-08-09 07:53:19
+=======
+ * @LastEditTime: 2019-08-09 07:42:32
+>>>>>>> f805868de69922c732431996c0c9b0965dbae617
  * @LastEditors: Please set LastEditors
  -->
 ## About
@@ -45,7 +49,7 @@ npm start
      - [x] 面试时间的计算
       
 - [ ] 面试列表
-    - [x] tab切换获取相应的数据接口进行渲染
+    - [ ] tab切换获取相应的数据接口进行渲染
     - [ ] 点击详情进入
     - [ ] scroll滑动
     - [ ] 点击获取相应的数据
@@ -80,7 +84,11 @@ npm start
 
 ## 未完成功能
 
+<<<<<<< HEAD
 > - ！
+=======
+> - 支付订单、订单查询、优惠券...未来会不断完善！
+>>>>>>> f805868de69922c732431996c0c9b0965dbae617
 
 ## End
 
@@ -89,6 +97,7 @@ npm start
 > - Thanks!
 
 ## 作者
+<<<<<<< HEAD
 
 > Name: Katherinekali && xuyuanyuan
 >
@@ -97,3 +106,11 @@ npm start
 > Email：klf960421@163.com
 
 
+=======
+
+> Name: Katherinekali && xuyuanyuan
+>
+> QQ: 1036877137
+>
+> Email：klf960421@163.com
+>>>>>>> f805868de69922c732431996c0c9b0965dbae617

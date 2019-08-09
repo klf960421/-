@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/home/main",
-    "pages/addInterview/main",
+    "pages/interviewDetail/main",
     "pages/interviewList/main",
     "pages/personalCenter/main",
-    "pages/interviewDetail/main",
+    "pages/addInterview/main",
     "pages/callCenter/main",
     "pages/search/main"
   ],
