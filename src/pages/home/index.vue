@@ -12,7 +12,7 @@
     <!-- 重新定位-->
     <img src="/static/images/logo.png" alt="" class="position" @click="location">
     <!-- 用户信息-->
-    <img src="/static/images/my.png" alt="" class="user">
+    <img src="/static/images/my.png" class="user" alt="">
     <button class="addBtn" @click="addSign">添加面试</button>
   </div>
 </template>

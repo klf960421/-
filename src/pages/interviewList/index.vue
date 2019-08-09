@@ -19,11 +19,10 @@ import { mapState, mapMutations, mapActions } from "vuex"
 import interviewItem from '../../components/interviewItem'
 export default {
     props:{
-
+  
     },
     components:{
         interviewItem
-
     },
     data(){
         return {
@@ -50,7 +49,7 @@ export default {
     }
 }
 </script>
-<style scoped lang="">
+<style scoped lang="scss">
     .listWrap{
         width:100%;
         height:100%;

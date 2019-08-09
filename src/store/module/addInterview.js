@@ -33,7 +33,7 @@ const actions = {
                 confirmColor: '#197DBF',
                 success (res) {
                     if (res.confirm) {
-                    wx.navigateTo({url: '/pages/interviewDetail/main'})
+                       wx.navigateTo({url: '/pages/interviewDetail/main'})
                     }
                 }
             })

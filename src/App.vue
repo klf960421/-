@@ -1,5 +1,5 @@
 <script>
-import {login} from '@/service/';
+import {login} from '@/service/index';
 
 export default {
   created () {
