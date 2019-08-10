@@ -1,24 +1,23 @@
-function formatNumber (n) {
-  const str = n.toString()
-  return str[1] ? str : `0${str}`
-}
-
-export function formatTime (date) {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
-
-  const t1 = [year, month, day].map(formatNumber).join('/')
-  const t2 = [hour, minute, second].map(formatNumber).join(':')
-
-  return `${t1} ${t2}`
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-08 21:21:26
+ * @LastEditTime: 2019-08-10 00:40:48
+ * @LastEditors: Please set LastEditors
+ */
+// 节流
+export function debounce(func, delay){
+  var timer=null;
+  return function(){
+    var context=this, args=arguments;
+    clearTimeout(timer);
+    timer=setTimeout(function(){
+      func.apply(context,args);
+    }, delay);
+  }
 }
 
 export default {
-  formatNumber,
-  formatTime
+  debounce
 }
+

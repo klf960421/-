@@ -1,7 +1,22 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-08 21:21:26
+ * @LastEditTime: 2019-08-10 08:01:54
+ * @LastEditors: Please set LastEditors
+ -->
 <script>
 import {login} from '@/service/';
+import { mapMutations } from "vuex"
 
 export default {
+   methods:{
+    ...mapMutations({
+      update:'home/updateOpenId'
+
+    })
+
+  },
   created () {
     // 调用API从本地缓存中获取数据
     /*
@@ -19,7 +34,10 @@ export default {
         if (res.code) {
           //发起网络请求
           let data = await login(res.code);
-          console.log('res...', data);
+          if(data.code === 0){
+            this.update(data.data.openid)
+          }
+          console.log('res..........', data);
         } else {
           console.log('登录失败！' + res.errMsg)
         }

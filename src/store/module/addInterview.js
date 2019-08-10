@@ -2,10 +2,10 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:45:07
- * @LastEditTime: 2019-08-09 08:24:29
+ * @LastEditTime: 2019-08-10 00:38:16
  * @LastEditors: Please set LastEditors
  */
-import { addSign, getSignList } from '@/service';
+import { addSign, getSignList, changeSign, signDetail } from '@/service';
 import moment from 'moment'
 //数据
 const state = {
@@ -13,7 +13,9 @@ const state = {
     adsList: {
        
     },
-    signList: []
+    signList: [],
+    signItem: {},//面试详情
+    addressId: 0
 }
   
   //同步操作
@@ -25,16 +27,20 @@ const mutations = {
     //面试列表
     updateSign(state, payload){
         //处理数据格式
-        let data=payload.map(item=>{
-            item.address=JSON.parse(item.address)
+        let data = payload.map(item=>{
+            item.address = JSON.parse(item.address)
             item.start_time = formatTime(item.start_time);
             return item
         })
         state.signList = data
     },
-    updateInfo(state, payload){
-        console.log(payload)
-
+    //存储当前点击项面试信息
+    saveSign(state, payload){
+        payload.address = JSON.parse( payload.address)
+        state.signItem = payload
+    },
+    getAddressId(state,payload){
+        state.addressId=payload
     }
 }
 
@@ -57,11 +63,26 @@ const actions = {
             })
         } 
     },
-    //获取面试地址信息
+    //获取面试列表信息
     async getInfo({ commit }, payload){
-        console.log(payload)
-        let data=await getSignList(payload)
+        let data = await getSignList(payload)
         commit('updateSign', data.data)
+    },
+    //更新面试
+    async updateSign({ commit, dispatch }, payload){
+        let {id, param} = payload
+        let data = await changeSign(id, param)
+        if (data.code === 0){
+            //获取面试信息详情
+            await dispatch('sign', id)
+            await dispatch('getInfo')
+        }
+    },
+    async sign({ commit }, payload){
+        let interview = await signDetail(payload)
+        if(interview.code === 0 ){
+            commit('saveSign', interview.data)
+        }
     }
 }
 

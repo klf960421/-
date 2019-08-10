@@ -2,10 +2,11 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-08 21:21:26
- * @LastEditTime: 2019-08-09 07:52:26
+ * @LastEditTime: 2019-08-09 12:54:34
  * @LastEditors: Please set LastEditors
  */
 import Fly from "flyio/dist/npm/wx"
+import store from "../store"
 
 export let fly = new Fly
 
@@ -21,7 +22,9 @@ const HOST = 'https://127.0.0.1' // 更改
 //添加请求拦截器
 fly.interceptors.request.use((request) => {
   // 把openid放在请求头部
-  let openid = wx.getStorageSync('openid');
+  console.log(store.state.home,'33333333333333333333')
+  let openid = store.state.home.openId;
+  console.log(openid,'11klf111')
   if (openid){
     request.headers['openid'] = openid;
   }

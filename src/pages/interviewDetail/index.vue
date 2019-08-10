@@ -1,103 +1,135 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: klf
+ * @Date: 2019-08-08 21:30:57
+ * @LastEditTime: 2019-08-10 07:37:32
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
-  <div class="interviewDetail">
-    <ul class="interviewDetailList">
+<div class="signWrap">
+  <form v-if="signItem">
+    <ul class="signItem">
       <li>
-        <span>面试地址 :</span>
-        <span>北京八维 </span>
+        <span>面试地址:</span>
+        <p>{{signItem.address.address}}</p>
       </li>
       <li>
-        <span>面试时间 :</span>
-        <span>2019-09-19</span>
+        <span>面试时间:</span>
+        <p>{{signItem.start_time}}</p>
       </li>
       <li>
-        <span>联系方式 :</span>
-        <span>18911561235</span>
+        <span>联系方式:</span>
+        <p>{{signItem.phone}}</p>
       </li>
       <li>
-        <span>是否提醒 :</span>
-        <span>未提醒</span>
+        <span>是否提醒:</span>
+        <p>{{signItem.status ?(signItem.remind === -1 ? "未提醒" : signItem.remind === 0 ? "已提醒" : '未提醒') : '未提醒'}}</p>
       </li>
       <li>
-        <span>面试状态 :</span>
-        <span>未开始</span>
+        <span>面试状态:</span>
+        <p>{{signItem.status === -1 ? '未开始' : signItem.status === 0 ? '已打卡' : '已放弃' }}</p>
       </li>
-      <li>
-        <span>取消提醒 :</span>
-        <span></span>
+      <li v-if="signItem.status !== 1">
+        <span>取消提醒:</span>
+        <p> 
+          <switch @change="remind"/>
+        </p>
       </li>
     </ul>
-    <div class="btn">
-      <p>去打卡</p>
-      <p>放弃面试</p>
+    <div class="btnWrap" v-if="signItem.status !== 1">
+      <button class="card" @click="clockIn">去打卡</button>
+      <button class="giveUp" @click="giveUp()">放弃面试</button>
     </div>
-  </div>
+  </form>
+</div>
 </template>
+
 <script>
+import { mapState, mapMutations, mapActions } from "vuex"
 export default {
   props: {},
   components: {},
   data() {
     return {};
   },
-  computed: {},
-  methods: {},
-  created() {},
-  mounted() {}
-};
+  onLoad(options){
+    this.getDetail(options.id*1)
+  },
+  computed: {
+     ...mapState({
+            signItem: state=>state.addInterview.signItem
+        })
+  },
+  methods: {
+    ...mapActions({
+      updateSign: 'addInterview/updateSign',
+      getDetail: 'addInterview/sign'
+    }),
+    //去打卡页面
+    clockIn(){
 
-// 先登录获取用户名和密码  获取登录态 才能拿到数据
-</script>
-<style scoped lang="scss">
-.interviewDetail {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  border-top: 0.5rpx solid #ccc;
-  font-size: 32rpx;
-  // border-bottom: 0.5rpx solid #ccc;
-  .interviewDetailList {
-    padding: 0 20rpx;
-    border-bottom: 0.5rpx solid #ccc;
-    li {
-      height: 90rpx;
-      line-height: 90rpx;
-      display: flex;
-      border-bottom: 0.5rpx solid #ccc;
-      span{
-       color:#333;
-      }
-      :nth-child(1){
-          color:rgba(204, 204, 204, 0.979);
-        }
-       :nth-child(2){
-          text-indent: 40rpx;
-        }
-    }
-    :last-child{
-      border-bottom:0;
+    },
+    //放弃面试
+    giveUp(){
+       wx.showModal({
+          title: '温馨提示',
+          content: '确定放弃？',
+          confirmColor: '#197DBF',
+      })
+      this.updateSign({param:{status: 1 }, id:this.signItem.id*1})
+    }, 
+    //提醒
+    remind(e){
+     this.updateSign({param: {remind: e.target.value ? 1 : 0}, id: this.signItem.id*1})
     }
   }
-  .btn {
+};
+</script>
+
+<style scoped lang="scss">
+.signWrap{
+  width: 100%;
+  height: 100%;
+}
+.signItem{
+  padding:0 20rpx;
+  box-sizing: border-box;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  li{
     width: 100%;
-    height: 90rpx;
     line-height: 90rpx;
     display: flex;
-    align-items: center;
-    margin-top:40rpx;
-    p {
-      flex: 1;
-      text-align: center;
-      // border:0.5rpx solid #ccc;
-      color:#fff;
-      margin:10rpx 20rpx;
+    border-bottom: 1px solid #ccc;
+    span{
+      width: 150rpx;
+      text-align: left;
+      color: #939393;
     }
-    :nth-child(1){
-      background: rgb(10, 161, 221);
-    }
-     :nth-child(2){
-      background: rgba(255, 51, 0, 0.753);
+    p{
+      padding-left: 30rpx;
+      color: #666;
     }
   }
 }
-// 1px = 2rpx
+.btnWrap{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50rpx;
+  button{
+    width: 45%;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #fff;
+    border-radius: 0;
+  }
+}
+.card{
+  background: #197dbf;
+}
+.giveUp{
+   background: #dc4e42;
+}
 </style>

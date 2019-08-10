@@ -1,9 +1,18 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-08 21:30:57
+ * @LastEditTime: 2019-08-10 08:39:47
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div class="personalCenter">
-    <div class="top">
+    <div class="header">
       <div>
-        <i class="iconfont icon-gerenzhongxin"></i>
-        <p>手机号</p>
+        <div class="avator">
+            <img src="/static/images/my.png" alt="">
+        </div>
+        <h4 class="title">{{tel}}</h4>
       </div>
     </div>
     <ul class="bottom">
@@ -18,19 +27,33 @@
         <i class="iconfont icon-jiantou-copy-copy"></i>
       </li>
     </ul>
+    <button v-if="showFlag"  open-type="getPhoneNumber" @getphonenumber="getPhoneNumber" class="telBtn">获取用户电话</button>
+    <button open-type="openSetting" @opensetting="callback" v-if="setting" class="telBtn">打开设置页</button>
   </div>
 </template>
+
 <script>
+import { mapState, mapMutations, mapActions } from 'vuex'
+import {decrypt} from "../../service/user"
+
 export default {
-  props: {},
-  components: {},
   data() {
-    return {};
+    return {
+      setting: false
+    };
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      tel: state=>state.home.tel,
+      showFlag: state=>state.home.showFlag,
+    })
+  },
   methods: {
+    ...mapActions({
+      getNumber:'home/getPhoneNumber'
+    }),
+    //进入面试列表
     myviews() {
-      // console.log(9);
       wx.navigateTo({
         url: "/pages/interviewList/main"
       });
@@ -39,14 +62,56 @@ export default {
        wx.navigateTo({
         url: "/pages/callCenter/main"
       });
+    },
+    //获取电话
+    getPhoneNumber(e){
+      let {encryptedData, iv} = e.target
+      if (encryptedData) {
+        this.getNumber({encryptedData, iv})
+      } else {
+        this.setting = true;
+        wx.openSetting({
+          success (res) {
+           this.setting = false;
+          }
+        })
+      }
+    },
+    openSetting(){
+
     }
   },
-  created() {},
-  mounted() {}
 };
 </script>
 <style scoped lang="scss">
 @import "../../../static/iconfont/iconfont.css";
+.header{
+  background:#f4f6f9;
+  width:100%;
+  height:350rpx;
+  box-sizing:border-box;
+  padding:50rpx 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-around;
+}
+.avator{
+  width:100rpx;
+  height:100rpx;
+  background:#fff;
+  text-align:center;
+  padding:20rpx;
+  border-radius:50%;
+}
+.avator img{
+  width:90%;
+  height:90%;
+}
+.title{
+  margin-top: 30rpx;
+  margin-left: -20rpx;
+}
 .personalCenter {
   width: 100%;
   height: 100%;
@@ -88,6 +153,13 @@ export default {
         margin-left: 30rpx;
       }
     }
+  }
+  .telBtn{
+    position: fixed;
+    top:0;
+    width:100%;
+    height:100%;
+    opacity: 0;
   }
 }
 </style>

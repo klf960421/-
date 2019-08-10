@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:30:57
- * @LastEditTime: 2019-08-09 07:58:25
+ * @LastEditTime: 2019-08-10 07:52:19
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -19,7 +19,7 @@
     <!-- 重新定位-->
     <img src="/static/images/logo.png" alt="" class="position" @click="location">
     <!-- 用户信息-->
-    <img src="/static/images/my.png" alt="" class="user">
+    <img src="/static/images/my.png" alt="" class="user" @click="goLogin">
     <button class="addBtn" @click="addSign">添加面试</button>
   </div>
 </template>
@@ -31,20 +31,21 @@ export default {
   computed:{
     ...mapState({
       longitude: state=>state.home.longitude,  //经度
-      latitude: state=>state.home.latitude     //纬度
+      latitude: state=>state.home.latitude,     //纬度
+      openid: state=>state.home.openId
     })
   },
 
   mounted(){
     //进入页面获取定位
     this.location()
-
   },
 
   methods: {
     ...mapActions({
       location: 'home/getLocation',
-      getSuggestion: 'address/getSuggestion'
+      getSuggestion: 'address/getSuggestion',
+      fingerPrint:'home/fingerPrint'
     }),
     //跳转添加面试页面
     addSign() {
@@ -52,6 +53,28 @@ export default {
             url: "/pages/addInterview/main"
         });
     },
+    //跳转添加个人中心页面
+    goLogin(){
+      wx.navigateTo({
+            url: "/pages/personalCenter/main"
+        });
+    }
+  },
+
+  created(){
+    //指纹认证
+    wx.startSoterAuthentication({
+      requestAuthModes: ['fingerPrint'],
+      challenge: '123456',
+      authContent: '请用指纹解锁',
+      success(res) {
+        this.fingerPrint({
+          openid:openid,
+          json_string:res.resultJSON,
+          json_signature:res.resultJSONSignature,
+        })
+    }
+})
   },
 };
 </script>

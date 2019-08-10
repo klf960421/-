@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:21:26
- * @LastEditTime: 2019-08-09 07:02:54
+ * @LastEditTime: 2019-08-09 13:51:42
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -64,9 +64,9 @@ export default {
             }
         }
     },
-    created(){
+    mounted(){
         //初始化获取面试列表信息
-        this.getInfo()
+        this.getInfo({status: -1})
     }
 }
 </script>
@@ -91,7 +91,8 @@ export default {
     background: #fff;
     border-bottom:1rpx solid #eee;
     .active{
-        border-bottom: 1px solid rgb(7, 84, 114);
+        border-bottom: 1px solid #197dbf;
+        color: #197dbf;
     }
 }
 .content{

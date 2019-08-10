@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:21:26
- * @LastEditTime: 2019-08-09 07:03:25
+ * @LastEditTime: 2019-08-10 00:42:53
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -71,6 +71,16 @@ export default {
         }
     },
     created(){
+        // let that = this;
+        // this.search = debounce((val)=>{
+        //     this.$map.search({
+        //         keyword: val,
+        //         region: '北京',
+        //         success: function(res){
+        //             that.signList = res.data;
+        //         }
+        //     })  
+        // },300)     
 
     },
     mounted(){
