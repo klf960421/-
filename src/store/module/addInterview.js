@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:45:07
- * @LastEditTime: 2019-08-11 23:46:03
+ * @LastEditTime: 2019-08-12 00:38:14
  * @LastEditors: Please set LastEditors
  */
 import { addSign, getSignList, changeSign, signDetail } from "@/service";
@@ -38,7 +38,7 @@ const mutations = {
   //存储当前点击项面试信息
   saveSign(state, payload) {
     payload.address = JSON.parse(payload.address);
-    payload.start_time = formatTime(start_time)
+    payload.start_time = formatTime(payload.start_time)
     state.signItem = payload;
   },
   getAddressId(state, payload) {
