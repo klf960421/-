@@ -31,7 +31,11 @@
 			"list": []
 		},
 		"miniprogram": {
+<<<<<<< HEAD
 			"current": 2,
+=======
+			"current": 1,
+>>>>>>> f805868de69922c732431996c0c9b0965dbae617
 			"list": [
 				{
 					"id": -1,
@@ -41,6 +45,7 @@
 					"scene": null
 				},
 				{
+<<<<<<< HEAD
 					"id": 1,
 					"name": "一面而就",
 					"pathName": "pages/home/main",
@@ -59,6 +64,11 @@
 					"name": "一面而就",
 					"pathName": "pages/interviewList/main",
 					"query": "",
+=======
+					"id": -1,
+					"name": "一面而就",
+					"pathName": "pages/home/main",
+>>>>>>> f805868de69922c732431996c0c9b0965dbae617
 					"scene": null
 				}
 			]

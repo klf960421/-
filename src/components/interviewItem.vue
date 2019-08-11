@@ -2,6 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:21:26
+<<<<<<< HEAD
  * @LastEditTime: 2019-08-11 23:23:43
  * @LastEditors: Please set LastEditors
  -->
@@ -18,15 +19,55 @@
       <span class="alert">{{item.remind === 0 ? '已提醒' : '未提醒'}}</span>
     </div>
   </li>
+=======
+ * @LastEditTime: 2019-08-09 08:36:56
+ * @LastEditors: Please set LastEditors
+ -->
+<template>
+    <li>
+        <div class="company" @click="goToDetail(item.id)">
+            <h5>{{item.company}}</h5>
+            <span class="start">未开始</span>
+        </div>
+        <div class="ads">
+            {{item.address.address}}
+        </div>
+        <div class="timeWrap">
+            <p>面试时间：{{item.start_time}}</p>
+            <span class="alert">未提醒</span>
+        </div>
+    </li>
+>>>>>>> f805868de69922c732431996c0c9b0965dbae617
 </template>
 
 <script>
 export default {
+<<<<<<< HEAD
   props: ["item"],
   methods: {
     //跳转详情页
     goToDetail(item) {
       wx.navigateTo({ url: "/pages/interviewDetail/main?id=" + item.id });
+=======
+    props: ["item"],
+    components:{
+
+    },
+    data(){
+        return {
+
+        }
+    },
+    computed:{
+        
+
+    },
+    methods:{
+        goToDetail(id){
+             wx.navigateTo({url: `/pages/interviewDetail/main/${id}`})
+        }
+
+>>>>>>> f805868de69922c732431996c0c9b0965dbae617
     }
   }
 };

@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-08 21:30:57
- * @LastEditTime: 2019-08-11 21:36:15
+ * @LastEditTime: 2019-08-12 00:41:55
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -173,6 +173,12 @@ export default {
       font-size: 32rpx;
       padding: 0;
     }
+  }
+  .telBtn{
+    position: fixed;
+    top:10rpx;
+    width:100%;
+    background: #fff;
   }
 }
 .telBtn{
