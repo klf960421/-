@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -48,8 +48,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "一面而就",
+					"id": 2,
+					"name": "home",
 					"pathName": "pages/home/main",
 					"query": "",
 					"scene": null

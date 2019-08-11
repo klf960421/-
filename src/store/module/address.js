@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-08 21:21:26
- * @LastEditTime: 2019-08-09 15:20:52
+ * @LastEditTime: 2019-08-11 00:03:52
  * @LastEditors: Please set LastEditors
  */
 //引入腾讯
@@ -24,6 +24,7 @@ const mutations={
 }
 
 const actions={
+  //用于获取输入关键字的补完与提示，帮助用户快速输入
   getSuggestion({commit}, payload){
     qqMapSdk.getSuggestion({
       keyword: payload.address,

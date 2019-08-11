@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:30:57
- * @LastEditTime: 2019-08-09 08:00:05
+ * @LastEditTime: 2019-08-11 23:29:29
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -43,7 +43,7 @@
       </ul>
       <h4 class="info">备注信息</h4>
       <textarea class="textarea" placeholder="备注信息(可选，100个字以内)" v-model="remark"></textarea>
-      <button form-type="submit">确认</button>
+      <button form-type="submit" :class="btnEnable?'': 'disable'">确认</button>
     </form>
   </div>
 </template>
@@ -62,6 +62,9 @@ export default {
     return {
       info: {
         date: [0,0,0],
+        name: '',
+        tel: '',
+        remark: ''
       }
     };
   },
@@ -92,7 +95,7 @@ export default {
       }
       // 格式化小时
       dateRange[1] = dateRange[1].map(item=>{
-        return item+'点'
+        return item +'点'
       })
       // 计算当前日期之后的十天
       dateRange[0] = dateRange[0].map(item=>{
@@ -130,17 +133,17 @@ export default {
       });
     },
 
-    //表单验证
+    // 表单验证
     formSubmit(e) {
-      //表单验证
+      // 表单验证
       let flag = this.validator();
       // 添加时间戳到表单
       this.adsList.start_time = moment(this.dateShow).unix()*1000;
       // 添加form_id
       this.adsList.form_id = e.target.formId;
-      //所有验证通过后
-      if(flag){
-        //添加面试信息
+      // 所有验证通过后
+      if (flag){
+        // 添加面试信息
         let data = this.add({company:this.name,
           phone: this.tel,
           form_id: e.mp.detail.formId,
@@ -150,14 +153,12 @@ export default {
           start_time: moment(this.dateShow).unix()*1000,
           description: this.remark
         })
-      }
-      
+      } 
     },
-
-    //表单验证
+    // 表单验证
     validator(){
-      //判断公司名称是否为空
-      if(this.name === ''){
+      // 判断公司名称是否为空
+      if (!this.name){
         wx.showToast({
           title: '请输入公司名称',
           icon: 'none',
@@ -165,8 +166,8 @@ export default {
         })
         return false;
       }
-      //判断电话是否为空
-      if(this.tel === ''){
+      // 判断电话是否为空
+      if (!this.tel){
         wx.showToast({
           title: '请输入公司电话',
           icon: 'none',
@@ -174,9 +175,8 @@ export default {
         })
         return false;
       }
-      //验证电话号码
-      let reg=/^1[35789][0-9]{9}$/;
-      if(!reg.test(this.tel)){
+      // 验证电话号码
+      if (!/^1(3|4|5|7|8)\d{9}$/.test(this.tel) || !/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/.test(this.tel)){
         wx.showToast({
           title:'电话格式不正确哦,请输入正确的格式',
           icon:'none',
@@ -184,8 +184,8 @@ export default {
         })
         return false;
       }
-      //验证地址
-      if(this.ads.address === ''){
+      // 验证地址
+      if (!this.ads.address){
         wx.showToast({
           title: '请选择地址信息',
           icon: 'none',
@@ -193,9 +193,19 @@ export default {
         })
         return false;
       }
-      return true;
+      if (!this.remark){
+        wx.showToast({
+          title: '请选择地址信息',
+          icon: 'none',
+          duration: 2000
+        })
+        return false;
+      }
+
+      return true; 
   },
-  //点击地址信息跳转搜索地址页面
+
+  // 点击地址信息跳转搜索地址页面
   updateAds(){
       wx.navigateTo({
         url: '/pages/search/main',
@@ -268,5 +278,8 @@ button {
   font-size: 40rpx;
   border-radius: 0;
   margin-top: 50rpx;
+}
+.all{
+  background: #197DBF;
 }
 </style>

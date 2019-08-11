@@ -2,19 +2,19 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 22:05:46
- * @LastEditTime: 2019-08-09 07:42:32
+ * @LastEditTime: 2019-08-12 00:20:58
  * @LastEditors: Please set LastEditors
  -->
-## About
+## 项目介绍
 一面而就项目是一款关于生活服务的微信小程序（为用户科学安排面试行程），基于webpack+原生api+mpvue+vuex框架
 
 ## 技术栈
-- mpvue(核心框架)
-- vuex(同redux,是一个数据管理库, 单项数据流)
-- better-scroll(使移动端滑动体验更加流畅)
+- mpvue是本项目的核心框架 (由美团团队开源的一款使用 Vue.js 开发微信小程序的前端框架。支持scss、less编译，采用vue规范，熟悉vue即可上手)
+- vuex(数据管理库, 响应式的原理使得数据驱动视图)
+- flyio一个基于Promise的、强大的、支持多种JavaScript运行时的http请求库。
 - moment(计算时间的插件)
-- 腾讯地图实时定位
-
+- 引用腾讯地图可以对用户实时定位
+- 本项目对微信小程序登陆流程(包括用户授权、获取用户手机号)、生物认证、模板推送等小程序原生api进行了较好的应用
 
 ## 项目运行
 
@@ -39,20 +39,21 @@ npm start
     - [x] 实时定位
 - [x] 添加面试
      - [x] 列表渲染
-     - [x] 添加评论
-     - [x] 添加留言
-     - [x] 根据关键字搜索相关地址
-     - [x] 面试时间的计算
+     - [x] 添加面试
+     - [x] 根据关键字搜索相关地址(腾讯地图的getLocation)
+     - [x] 面试时间的选择器(moment)
       
-- [ ] 面试列表
-    - [ ] tab切换获取相应的数据接口进行渲染
-    - [ ] 点击详情进入
-    - [ ] scroll滑动
-    - [ ] 点击获取相应的数据
-- [ ] 面试详情
-    - [ ] 判断是否到达目的地进行打卡
-    - [ ] 改变面试的状态
-- [ ] 个人中心
+- [x] 面试列表
+    - [x] tab切换获取相应的数据接口进行渲染
+    - [x] 点击详情进入
+    - [x] 上拉加载更多
+- [x] 面试详情
+    - [x] 判断是否到达目的地进行打卡
+    - [x] 改变面试的状态
+    - [x] 点击电话可以拨打电话
+- [x] 个人中心
+    - [x] 指纹认证
+    - [x] 客服中心
     
 
 
@@ -68,23 +69,22 @@ npm start
 
 |         面试详情         |             打卡          |        个人中心        |
 | :-------------------: |  :-------------------------: |:------------------: |
-| ![](./imgs/signDetail.png) |  ![](./imgs/card.png) |![](./imgs/addCart.png) |
+| ![](./imgs/signDetail.png) |  ![](./imgs/card.png) |![](./imgs/personalCentert.png) |
 
 
 
 ## 关于您的建议
 
-> -  正在更新维护状态，部分功能尚未没完成。
+> -  正在更新维护状态，部分功能尚未完成。
 > - 倘若您发现 Bug 或者有优化意见及其他宝贵意见，欢迎您提交 issue 或者联系我 qq = 1036877137 、Email = klf960421@163.com
-> - EasyMarket 服务端 ，请移步至 [EasyMarketSever](https://github.com/Katherinekali/ShoppingSpot)。
 
 ## 未完成功能
 
-> - 支付订单、订单查询、优惠券...未来会不断完善！
+> - 部分功能正在完善！
 
 ## End
 
-> - 喜欢 EasyMarket，帮忙点个 Star 吧!
+> - 喜欢 The-interview-assistant，帮忙点个 Star 吧!
 > - 作者还会不断更新， 您的支持是作者不断更新的动力!
 > - Thanks!
 

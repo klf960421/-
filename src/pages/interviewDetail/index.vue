@@ -2,7 +2,7 @@
  * @Description: In User Settings Edit
  * @Author: klf
  * @Date: 2019-08-08 21:30:57
- * @LastEditTime: 2019-08-10 07:37:32
+ * @LastEditTime: 2019-08-11 23:34:04
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -11,7 +11,7 @@
     <ul class="signItem">
       <li>
         <span>面试地址:</span>
-        <p>{{signItem.address.address}}</p>
+        <p class="address">{{signItem.address && signItem.address.address}}</p>
       </li>
       <li>
         <span>面试时间:</span>
@@ -19,24 +19,24 @@
       </li>
       <li>
         <span>联系方式:</span>
-        <p>{{signItem.phone}}</p>
+        <p @click="telCall">{{signItem.phone}}</p>
       </li>
       <li>
         <span>是否提醒:</span>
-        <p>{{signItem.status ?(signItem.remind === -1 ? "未提醒" : signItem.remind === 0 ? "已提醒" : '未提醒') : '未提醒'}}</p>
+        <p>{{signItem.remind === -1 ? '未提醒' : signItem.remind === 1 ? '取消提醒':'未提醒' }}</p>
       </li>
       <li>
         <span>面试状态:</span>
         <p>{{signItem.status === -1 ? '未开始' : signItem.status === 0 ? '已打卡' : '已放弃' }}</p>
       </li>
-      <li v-if="signItem.status !== 1">
+      <li v-if="signItem.status === -1">
         <span>取消提醒:</span>
         <p> 
           <switch @change="remind"/>
         </p>
       </li>
     </ul>
-    <div class="btnWrap" v-if="signItem.status !== 1">
+    <div class="btnWrap" v-if="signItem.status === -1">
       <button class="card" @click="clockIn">去打卡</button>
       <button class="giveUp" @click="giveUp()">放弃面试</button>
     </div>
@@ -47,18 +47,13 @@
 <script>
 import { mapState, mapMutations, mapActions } from "vuex"
 export default {
-  props: {},
-  components: {},
-  data() {
-    return {};
-  },
   onLoad(options){
     this.getDetail(options.id*1)
   },
   computed: {
-     ...mapState({
-            signItem: state=>state.addInterview.signItem
-        })
+    ...mapState({
+      signItem: state=>state.addInterview.signItem
+      })
   },
   methods: {
     ...mapActions({
@@ -67,7 +62,9 @@ export default {
     }),
     //去打卡页面
     clockIn(){
-
+      wx.navigateTo({
+            url: "/pages/clockIn/main"
+      });
     },
     //放弃面试
     giveUp(){
@@ -78,6 +75,11 @@ export default {
       })
       this.updateSign({param:{status: 1 }, id:this.signItem.id*1})
     }, 
+    telCall(){
+      wx.makePhoneCall({
+        phoneNumber: this.signItem.phone //仅为示例，并非真实的电话号码
+      })
+    },
     //提醒
     remind(e){
      this.updateSign({param: {remind: e.target.value ? 1 : 0}, id: this.signItem.id*1})
@@ -109,6 +111,10 @@ export default {
     p{
       padding-left: 30rpx;
       color: #666;
+    }
+    .address{
+      flex: 1;
+      overflow: hidden;
     }
   }
 }

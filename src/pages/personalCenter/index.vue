@@ -2,18 +2,16 @@
  * @Description: In User Settings Edit
  * @Author: your name
  * @Date: 2019-08-08 21:30:57
- * @LastEditTime: 2019-08-10 08:39:47
+ * @LastEditTime: 2019-08-11 21:36:15
  * @LastEditors: Please set LastEditors
  -->
 <template>
   <div class="personalCenter">
     <div class="header">
-      <div>
-        <div class="avator">
-            <img src="/static/images/my.png" alt="">
-        </div>
-        <h4 class="title">{{tel}}</h4>
+      <div class="avator">
+          <img :src="userInfo.avatarUrl" alt="">
       </div>
+      <h4 class="title">{{tel}}</h4>
     </div>
     <ul class="bottom">
       <li @click="myviews">
@@ -21,9 +19,9 @@
         <span>我的面试</span>
         <i class="iconfont icon-jiantou-copy-copy"></i>
       </li>
-      <li @click="callCenter">
+      <li>
         <i class="iconfont icon-icobanbengengxin"></i>
-        <span>客服中心</span>
+        <button open-type="contact" @contact="handleContact">客服中心</button>
         <i class="iconfont icon-jiantou-copy-copy"></i>
       </li>
     </ul>
@@ -46,21 +44,20 @@ export default {
     ...mapState({
       tel: state=>state.home.tel,
       showFlag: state=>state.home.showFlag,
+      userInfo: state=>state.user.userInfo,
+      openid: state=>state.home.openid
     })
+    
   },
   methods: {
     ...mapActions({
-      getNumber:'home/getPhoneNumber'
+      getNumber: 'home/getPhoneNumber',
+      fingerPrint: 'home/fingerPrint' //指纹
     }),
     //进入面试列表
     myviews() {
       wx.navigateTo({
         url: "/pages/interviewList/main"
-      });
-    },
-    callCenter(){
-       wx.navigateTo({
-        url: "/pages/callCenter/main"
       });
     },
     //获取电话
@@ -71,16 +68,34 @@ export default {
       } else {
         this.setting = true;
         wx.openSetting({
-          success (res) {
-           this.setting = false;
-          }
         })
       }
     },
     openSetting(){
-
+        this.setting = false;
+    },
+    //客服中心
+    handleContact(e){
+      console.log(e.path)
+      console.log(e.query)
     }
   },
+  created(){
+    var that = this;
+    wx.startSoterAuthentication({
+      requestAuthModes: ['fingerPrint'],
+      challenge: '123456',
+      authContent: '请用指纹解锁',
+      success(res) {
+        console.log(res)
+        that.fingerPrint({
+          openid: that.openid,
+          json_string: res.resultJSON,
+          json_signature: res.resultJSONSignature,
+        })
+      }
+    })
+  }
 };
 </script>
 <style scoped lang="scss">
@@ -105,61 +120,66 @@ export default {
   border-radius:50%;
 }
 .avator img{
-  width:90%;
-  height:90%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 .title{
   margin-top: 30rpx;
-  margin-left: -20rpx;
 }
 .personalCenter {
   width: 100%;
   height: 100%;
-  .top {
-    width: 100%;
-    height: 300rpx;
-    // line-height: 300rpx;
-    div {
-      line-height: 200rpx;
-      // height: 300rpx;
-      // background: pink;   
-       i {
-        font-size: 100rpx;
-        color: cyan;
-        text-align: center;
-      }
-      p {
-        color: #000;
-        height: 100rpx;
-        line-height: 100rpx;
-        // background: blue;
-        text-align: center;
-      }
+}
+.top {
+  width: 100%;
+  height: 300rpx;
+  div {
+    line-height: 200rpx;  
+    i {
+      font-size: 100rpx;
+      color: cyan;
+      text-align: center;
+    }
+    p {
+      color: #000;
+      height: 100rpx;
+      line-height: 100rpx;
+      text-align: center;
     }
   }
-  .bottom {
-    width: 100%;
-    height: 240rpx;
-    // background: pink;
-    li {
-      display: flex;
-      align-items: center;
-      height: 120rpx;
-      line-height: 120rpx;
-      padding: 0 26rpx;
-      border-bottom: 2rpx solid #ccc;
-      span {
-        flex: 1;
-        margin-left: 30rpx;
+}
+.bottom {
+  width: 100%;
+  height: 240rpx;
+  li {
+    display: flex;
+    align-items: center;
+    height: 120rpx;
+    line-height: 120rpx;
+    padding: 0 26rpx;
+    border-bottom: .5rpx solid #ccc;
+    span,button {
+      flex: 1;
+      margin-left: 30rpx;
+    }
+    button{
+      &:after{
+        border: none;
       }
+      background: #fff;
+      border-radius: 0;
+      text-align: left;
+      font-size: 32rpx;
+      padding: 0;
     }
   }
-  .telBtn{
-    position: fixed;
-    top:0;
-    width:100%;
-    height:100%;
-    opacity: 0;
-  }
+}
+.telBtn{
+  position: fixed;
+  top:0;
+  width:100%;
+  height:100%;
+  opacity: 0;
 }
 </style>
